@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Car {
     int x;
@@ -11,7 +12,9 @@ public class Car {
     int h;
     int speed;
     String fileName;
-    BufferedImage carImage;
+    // BufferedImage carImage;
+
+    ImageIcon carImage;
 
     Car(int x, int y, int w, int h, int speed, String fileName) {
         this.x = x;
@@ -24,15 +27,17 @@ public class Car {
     }
 
     void loadBgImage() {
-        try {
-            carImage = ImageIO.read(AppPanel.class.getResource(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        carImage = new ImageIcon(AppPanel.class.getResource(fileName));
+        // try {
+        //     carImage = ImageIO.read(AppPanel.class.getResource(fileName));
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     void paintBgImage(Graphics g) {
-        g.drawImage(carImage, x, y, w, h, null);
+        g.drawImage(carImage.getImage(), x, y, w, h, null);
     }
 
     void moveCarUP() {

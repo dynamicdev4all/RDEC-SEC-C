@@ -15,22 +15,39 @@ public class AppPanel extends JPanel {
     int xPos = 0;
     int yPos = 0;
 
-    Car car1;
-    Car car2;
-    Car car3;
-    Car car4;
+    int carCount = 1;
+    Car carsArr[] = new Car[carCount];
+
+    // Car car1;
+    // Car car2;
+    // Car car3;
+    // Car car4;
 
     AppPanel() {
         setSize(500, 500);
         // setBackground(Color.BLUE);
         // loadBgImage();
-        car1 = new Car(30, 20, 150, 150, 1, "enemyCar.png");
-        car2 = new Car(160, 20, 150, 150, 3, "enemyCar.png");
-        car3 = new Car(290, 20, 150, 150, 20, "enemyCar.png");
-        car4 = new Car(160, 290, 80, 150, 20, "playerCar.png");
+        initCars();
+        // carsArr[0] = new Car(30, 20, 150, 150, 1, "enemyCar.png");
+        // car2 = new Car(160, 20, 150, 150, 3, "enemyCar.png");
+        // car3 = new Car(290, 20, 150, 150, 20, "enemyCar.png");
+        // car4 = new Car(160, 290, 80, 150, 20, "playerCar.png");
         appLoop();
         addKeyBoardControl();
         setFocusable(true);
+    }
+
+    void initCars() {
+        int gap = 20;
+        for (int i = 0; i < carCount; i++) {
+            carsArr[i] = new Car(gap, 20, 150, 150, 1, "random.gif");
+            gap = gap + 150 + 20;
+        }
+
+        // for (Car car : carsArr) {
+        //     car = new Car(gap, 20, 150, 150, 1, "random.gif");
+        //     gap = gap + 150 + 20;
+        // }
     }
 
     void appLoop() {
@@ -43,19 +60,34 @@ public class AppPanel extends JPanel {
             // car1.moveCarUP();
             // car2.moveCarUP();
             // car3.moveCarUP();
+            // moveCars();
             repaint();
         });
         timer.start();
+    }
+
+    void moveCars() {
+        for (int i = 0; i < carCount; i++) {
+            carsArr[i].moveCarUP();
+        }
+    }
+
+    void paintCars(Graphics pen) {
+        for (int i = 0; i < carCount; i++) {
+            carsArr[i].paintBgImage(pen);
+            ;
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         // TODO Auto-generated method stub
         super.paintComponent(g);
-        car1.paintBgImage(g);
-        car2.paintBgImage(g);
-        car3.paintBgImage(g);
-        car4.paintBgImage(g);
+        // car1.paintBgImage(g);
+        // car2.paintBgImage(g);
+        // car3.paintBgImage(g);
+        // car4.paintBgImage(g);
+        paintCars(g);
     }
 
     void addKeyBoardControl() {
