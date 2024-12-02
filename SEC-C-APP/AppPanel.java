@@ -14,9 +14,14 @@ public class AppPanel extends JPanel {
     Timer timer;
     int xPos = 0;
     int yPos = 0;
-
+    int playerIndex = 0;
+    int playerRunX = 50;
+    int playerDanceIndex = 0;
     int carCount = 1;
     Car carsArr[] = new Car[carCount];
+    // int playerCount = 1;
+    BufferedImage playerArr[] = Player.getRightMove();
+    BufferedImage playerDanceArr[] = Player.getDanceMove();
 
     // Car car1;
     // Car car2;
@@ -25,9 +30,11 @@ public class AppPanel extends JPanel {
 
     AppPanel() {
         setSize(500, 500);
+        System.out.println(playerArr.length);
         // setBackground(Color.BLUE);
         // loadBgImage();
-        initCars();
+        // initCars();
+        // initPlayers();
         // carsArr[0] = new Car(30, 20, 150, 150, 1, "enemyCar.png");
         // car2 = new Car(160, 20, 150, 150, 3, "enemyCar.png");
         // car3 = new Car(290, 20, 150, 150, 20, "enemyCar.png");
@@ -45,13 +52,21 @@ public class AppPanel extends JPanel {
         }
 
         // for (Car car : carsArr) {
-        //     car = new Car(gap, 20, 150, 150, 1, "random.gif");
-        //     gap = gap + 150 + 20;
+        // car = new Car(gap, 20, 150, 150, 1, "random.gif");
+        // gap = gap + 150 + 20;
         // }
     }
 
+    // void initPlayers() {
+    // int gap = 20;
+    // for (int i = 0; i < playerCount; i++) {
+    // playerArr[i] = new Player(gap, 20, 150, 150, 1, "player.png");
+    // gap = gap + 150 + 20;
+    // }
+    // }
+
     void appLoop() {
-        timer = new Timer(30, (abc) -> {
+        timer = new Timer(100, (abc) -> {
             // if (xPos > 500) {
             // xPos = 0;
             // }
@@ -61,6 +76,15 @@ public class AppPanel extends JPanel {
             // car2.moveCarUP();
             // car3.moveCarUP();
             // moveCars();
+            movePlayer();
+            playerIndex++;
+            playerDanceIndex++;
+            if (playerIndex > 3) {
+                playerIndex = 0;
+            }
+            if (playerDanceIndex > 7) {
+                playerDanceIndex = 0;
+            }
             repaint();
         });
         timer.start();
@@ -72,11 +96,25 @@ public class AppPanel extends JPanel {
         }
     }
 
+    void movePlayer() {
+        if (playerRunX > 500) {
+            playerRunX = -60;
+        }
+        playerRunX += 15;
+    }
+
     void paintCars(Graphics pen) {
         for (int i = 0; i < carCount; i++) {
             carsArr[i].paintBgImage(pen);
             ;
         }
+    }
+
+    void paintPlayer(Graphics pen) {
+        // for (int i = 0; i < playerArr.length; i++) {
+        Player.paintBgImage(pen, playerArr[playerIndex], 150, playerRunX);
+        Player.paintBgImage(pen, playerDanceArr[playerDanceIndex], 0, 190);
+        // }
     }
 
     @Override
@@ -87,7 +125,8 @@ public class AppPanel extends JPanel {
         // car2.paintBgImage(g);
         // car3.paintBgImage(g);
         // car4.paintBgImage(g);
-        paintCars(g);
+        // paintCars(g);
+        paintPlayer(g);
     }
 
     void addKeyBoardControl() {
