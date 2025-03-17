@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                <div class="heading">
+                    <h1 class="text text-large">Register Now</h1>
+                    <p class="text text-normal">Already have an Account? <span><a href="login.html" class="text text-links">Login Now</a></span>
+                    </p>
+                </div>
+                <form action="/create_new_user" method="post">
+
+                        <label for="username" class="input-label" hidden>User Name</label>
+                        <input type="text" name="username" id="username" placeholder="User Name">
+                  
+                        <label for="email" class="input-label" hidden>Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="Email Address">
+                   
+                        <label for="password" class="input-label" hidden>Password</label>
+                        <input type="password" name="password" id="password" class="input-field" placeholder="Password">
+                        <input type="submit" name="submit" value="Register Now">
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
