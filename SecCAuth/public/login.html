@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main class="main">
-        <div class="container">
-            <section class="wrapper">
-                <div class="heading">
-                    <h1 class="text text-large">Sign In</h1>
-                    <p class="text text-normal">New user? <span><a href="register.html" class="text text-links">Create an account</a></span>
-                    </p>
-                </div>
-                <form name="signin" class="form">
-                    <div class="input-control">
-                        <label for="email" class="input-label" hidden>Email Address</label>
-                        <input type="email" name="email" id="email" class="input-field" placeholder="Email Address">
-                    </div>
-                    <div class="input-control">
-                        <label for="password" class="input-label" hidden>Password</label>
-                        <input type="password" name="password" id="password" class="input-field" placeholder="Password">
-                    </div>
-                    <div class="input-control">
-                        <a href="#" class="text text-links">Forgot Password</a>
-                        <input type="submit" name="submit" class="input-submit" value="Login Now" disabled>
-                    </div>
-                </form>
-            </section>
-        </div>
+      <div class="container">
+        <section class="wrapper">
+          <form action="/login-user" method="post">
+            <label for="email" class="input-label" hidden>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input-field"
+              placeholder="Email Address"
+            />
+
+            <label for="password" class="input-label" hidden>Password</label>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              class="input-field"
+              placeholder="Password"
+            />
+            <button type="submit">Login Now</button>
+          </form>
+        </section>
+      </div>
     </main>
-</body>
+  </body>
 </html>
