@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer")
 
 
-const sendMail = (email)=>{
+const sendMail = (email, userName)=>{
     const transport = nodemailer.createTransport({
         service:"gmail",
         auth:{
@@ -9,12 +9,14 @@ const sendMail = (email)=>{
             pass:"hkhmvpgukunqzmxk"
         }
     })
-    
+    const verificationLink = "http://localhost:5500/verifyemail?id=a29zb2cxNzUxNUBhbmxvY2MuY29t";
     const mail = ({
         from:"test.duck.mail@gmail.com",
         to:email,
         subject:"Email Verification",
-        text:"Your account has been created successfully"
+        // text:"Your account has been created successfully"
+        html:`Dear ${userName},<br>Your account has been created Successfully.<br>Please click on the link below to verify your account.<br> <a href=${verificationLink}>http://localhost:5500/verifyemail?id=a29zb2cxNzUxNUBhbmxvY2MuY29t</a><br>Regards,<br>Team Sec-C`
+
     })
     
     transport.sendMail(mail, (err)=>{

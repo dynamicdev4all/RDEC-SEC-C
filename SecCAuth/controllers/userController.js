@@ -13,8 +13,8 @@ const userRegistration = async(username, email, password)=>{
             password: password,
             isActive: false,
           });
-          await newUser.save();
-          sendMail(email)
+          // await newUser.save();
+          sendMail(email, username)
           console.log("User Created Successfully");
         }
       } catch (error) {
@@ -40,7 +40,9 @@ const userLogin = async(email, password)=>{
       }
 }
 
-const userVerification = ()=>{}
+const userVerification = ()=>{
+  
+}
 
 module.exports = {
     userRegistration,

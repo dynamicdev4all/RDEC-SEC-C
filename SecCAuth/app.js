@@ -23,6 +23,11 @@ app.post("/login-user", async (req, res) => {
   userLogin(email,password)
 });
 
+app.get("/verifyemail", (req, res) => {
+ console.log("Demo")
+ console.log(req.query.id)
+});
+
 app.listen(5500, () => {
   console.log("server started");
 });
